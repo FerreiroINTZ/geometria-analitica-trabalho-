@@ -5,16 +5,7 @@ import { useControls } from "leva"
 // imoprta o axisHelper para o projeto
 extend({ArrowHelper: THREE.ArrowHelper})
 
-function axisHelper() {
-
-    // isso cria a opcao de mudar o angulo
-      const {graus} = useControls({
-        graus:{
-          value: 0,
-          max: 180,
-          min: 0
-        }
-      })
+function axisHelper({graus}) {
   
       // cancula o radiano de um gral
       const rad = Math.PI / 180

@@ -2,8 +2,21 @@ import {Canvas} from "@react-three/fiber"
 import { OrbitControls } from '@react-three/drei'
 import AxisHelper from "./coponents/axisHelper"
 import Caixa from "./coponents/box"
+import { useControls } from "leva"
+import { useState } from "react"
 
 function App() {
+
+  const [rodar, setRodar] = useState(false)
+
+  const {angle} = useControls({
+    angle:{
+      value: 90,
+      max: 180,
+      min: 0
+    }
+  })
+
   return (
     <>
       <h1>Gabriel Felipe</h1>
@@ -11,14 +24,15 @@ function App() {
         camera={{position: [6, 2, 0]}} 
         style={{backgroundColor: "red", width: "600px", height: "300px"}}>
         
-        <Caixa />
-
-        <AxisHelper />
+        <Caixa
+          walking={rodar} 
+          angulo={angle}/>
         
         <ambientLight intensity={1}/>
         <OrbitControls />
         <gridHelper />
       </Canvas>
+      <button onClick={() => setRodar(!rodar)}>{rodar ? "Rodar" : "Parar"}</button>
     </>
   )
 }
