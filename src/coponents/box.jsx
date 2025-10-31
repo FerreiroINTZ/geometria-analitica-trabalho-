@@ -7,22 +7,26 @@ function box({angulo, walking}) {
 
     const box = useRef()
 
+    console.log(angulo)
+
     useFrame(() =>{
-      // muda a posicao
+      const rad = Math.PI / 180
+
       if(walking){
-        const vetor = new THREE.Vector3(1, 1 ,0)
-        const {x} = box.current.position
+        // muda a posicao
+        const vetor = new THREE.Vector3(1, 1 ,0).normalize()
+        const {z} = box.current.position
         const {y} = box.current.position
-        console.log(x)
-        console.log(y)
+        console.log("x", z)
+        console.log("y", y)
         console.log(vetor)
         const initial = 0
-        box.current.position.set(0, initial + 0, 1)
-
+        box.current.position.set(0, y + .01 *  Math.sin(rad * angulo), z + .01 *  Math.cos(rad * angulo))
+        
         // normalize torna o vetor unitario
         // onde a base nao sera unitaria, mas sum o vetor resultante
         // os valores de x y sao os radianos de cosseno e seno
-        console.log(vetor.normalize())
+        console.log(vetor)
       }
     })
 
