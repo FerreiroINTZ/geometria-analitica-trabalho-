@@ -8,6 +8,7 @@ import { useState } from "react"
 function App() {
 
   const [rodar, setRodar] = useState(false)
+  const [reset, setReset] = useState(false)
 
   const {angle} = useControls({
     angle:{
@@ -26,13 +27,16 @@ function App() {
         
         <Caixa
           walking={rodar} 
-          angulo={angle}/>
+          angulo={angle}
+          setReset={setReset}
+          reset={reset}/>
         
         <ambientLight intensity={1}/>
         <OrbitControls />
         <gridHelper />
       </Canvas>
       <button onClick={() => setRodar(!rodar)}>{rodar ? "Rodar" : "Parar"}</button>
+      <button onClick={() => setReset(true)}>Resetar</button>
     </>
   )
 }
