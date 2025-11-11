@@ -18,7 +18,7 @@ function axisHelper({graus}) {
 
   return (
     // <></>
-    <arrowHelper args={[destino, origin, 2, "blue"]}/>
+    <arrowHelper args={[destino, origin, 2, "green"]}/>
   )
 }
 

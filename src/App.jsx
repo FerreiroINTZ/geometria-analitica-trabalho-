@@ -20,10 +20,9 @@ function App() {
 
   return (
     <>
-      <h1>Gabriel Felipe</h1>
       <Canvas
-        camera={{position: [6, 2, 0]}} 
-        style={{backgroundColor: "red", width: "600px", height: "300px"}}>
+        camera={{position: [6, 2, 0]}}
+        style={{width: "100%", height: "100%"}}>
         
         <Caixa
           walking={rodar} 
@@ -31,12 +30,18 @@ function App() {
           setReset={setReset}
           reset={reset}/>
         
-        <ambientLight intensity={1}/>
+        <ambientLight intensity={.5}/>
+        <directionalLight intensity={1} position={[.5, 1, 0]}/>
         <OrbitControls />
         <gridHelper />
       </Canvas>
-      <button onClick={() => setRodar(!rodar)}>{rodar ? "Rodar" : "Parar"}</button>
-      <button onClick={() => setReset(true)}>Resetar</button>
+      <div id="wrapper">
+          <h1>Vetores na Pratica</h1>
+          <div id="actions">
+            <button id="run" onClick={() => setRodar(!rodar)}>{rodar ? "Parar" : "Rodar"}</button>
+            <button id="reset" onClick={() => setReset(true)}>Resetar</button>
+          </div>
+      </div>
     </>
   )
 }

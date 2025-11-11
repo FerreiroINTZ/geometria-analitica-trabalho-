@@ -37,7 +37,7 @@ function box({angulo, walking, setReset, reset}) {
   return (
     <mesh ref={caixa}>
         <boxGeometry />
-        <meshStandardMaterial color="green"/>
+        <meshPhongMaterial color="#ff00aa"/>
         <Eixos graus={angulo} />
     </mesh>
   )
