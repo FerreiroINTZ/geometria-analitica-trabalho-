@@ -20,15 +20,23 @@ canvas{
   gap: 10px;
   position: absolute;
   top: 0px;
+  margin-top: 20px;
+  margin-left: 15px;
+  
+  ul{
+    background: red;
+    height: 250px;
+    overflow-y: scroll;
+  }
   
   #actions{
-    margin-left: 15px;
     display: flex;
     gap: 10px;
     width: fit-content;
     /* background: blue; */
 
-    #run, #reset{
+
+    #run, #reset, #stop{
       font-family: "Inter", sans-serif;
       padding: 10px;
       width: 100px;
@@ -36,28 +44,33 @@ canvas{
       border: none;
       font-size: 20px;
       font-weight:700;
-      color: white;
-      color: #202020;
-      opacity: .85;
+      opacity: .5;
       cursor: pointer;
       transition: .3s;
       
+      &:active{
+        transform: scale(.85);
+      }
+
       &:hover{
         transform: scale(1.1);
         opacity: 1;
       }
     }
-
+    
     #run{
       background: #62af68;
+      color: white;
     }
-
+    
     #reset{
       background: #bd863e;
+      color: white;
     }
 
-    #parar{
-      background: #b44646;
+    #stop{
+      background: #b44646 !important;
+      color: white;
     }
   }
 }

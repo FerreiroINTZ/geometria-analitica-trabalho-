@@ -3,12 +3,15 @@ import { OrbitControls } from '@react-three/drei'
 import AxisHelper from "./coponents/axisHelper"
 import Caixa from "./coponents/box"
 import { useControls } from "leva"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 function App() {
 
   const [rodar, setRodar] = useState(false)
   const [reset, setReset] = useState(false)
+  const [positions, setPositions] = useState([{x: 0, y: 0}])
+
+  const infoBox = useRef()
 
   const {angle} = useControls({
     angle:{
@@ -17,6 +20,11 @@ function App() {
       min: 0
     }
   })
+
+  useEffect(() =>{
+    // console.log("positions:", positions)
+    console.log(infoBox.current.scroll)
+  }, [positions])
 
   return (
     <>
@@ -28,7 +36,9 @@ function App() {
           walking={rodar} 
           angulo={angle}
           setReset={setReset}
-          reset={reset}/>
+          reset={reset}
+          setPositions={setPositions}
+          position={positions}/>
         
         <ambientLight intensity={.5}/>
         <directionalLight intensity={1} position={[.5, 1, 0]}/>
@@ -38,9 +48,14 @@ function App() {
       <div id="wrapper">
           <h1>Vetores na Pratica</h1>
           <div id="actions">
-            <button id="run" onClick={() => setRodar(!rodar)}>{rodar ? "Parar" : "Rodar"}</button>
+            <button id={rodar ? "stop" : "run"} onClick={() => setRodar(!rodar)}>{rodar ? "Parar" : "Rodar"}</button>
             <button id="reset" onClick={() => setReset(true)}>Resetar</button>
           </div>
+          <ul ref={infoBox}>
+            {positions?.map((vall, index) =>
+              <p>{vall.x}</p>
+            )}
+          </ul>
       </div>
     </>
   )
